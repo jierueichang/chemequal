@@ -79,8 +79,8 @@ def render(i,eq1,eq2):
             res+='+'
     res+='->'
     for j in range(len(eq2)):
-        if str(i)[j] != '1':
-            res+=str(i)[j]
+        if str(i)[j+len(eq1)] != '1':
+            res+=str(i)[j+len(eq1)]
         res+=eq2[j]
         if j!=len(eq2)-1:
             res+='+'
@@ -103,7 +103,8 @@ def run(eq1,eq2):
     for j in range(int('1'*(len(eq1)+len(eq2))),iteration_count):
         if find_balanced(j,eq1,eq2):
             break
-        #print(j)
+        print(j)
+    print(j)
     return render(j,raw_eq1,raw_eq2)
 
 def main():
