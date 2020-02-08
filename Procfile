@@ -1,1 +1,1 @@
-web: gunicorn app:chemequal_app
+web: gunicorn app:app
