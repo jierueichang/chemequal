@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Chemequal</title>
+    </head>
+    <body>
+        <style>
+            body{
+                font-family:"Segoe UI",Helvetica,sans-serif;
+                margin-left:20%;
+                margin-right:20%;
+                font-weight:lighter;
+            }
+            h1{
+                font-size:40pt;
+                font-weight:lighter;
+            }
+            input[type=text]{
+                padding:10px;
+                border-radius:5px;
+                box-shadow:0px 0px 4px rgb(142, 178, 255);
+                border: none;
+                font-size:13pt;
+            }
+            input[type=submit]{
+                padding:10px;
+                border-radius:5px;
+                background-color:rgb(148, 255, 127);
+                border:none;
+                font-size:13pt;
+            }
+            hr{
+                border:none;
+                background-color:teal;
+                min-height:2px;
+            }
+        </style>
+        <h1>Chemequal</h1>
+        <h3>Chemical Equation Balancing Tool</h3>
+        <hr>
+        <br>
+        <form method=post>
+            <input name=eq1 placeholder='eq1' type=text>
+            <p> --> </p>
+            <input name=eq2 placeholder='eq2' type=text>
+            <br><br>
+            <input type=submit method=post>
+        </form>
+        <br>
+        <h3>Result</h3>
+        <div style='padding:5px;background-color:whitesmoke;font-family:monospace;font-size:20pt;'><p>{{ ans }}</p></div>
+        <br>
+        <p>Created by Jieruei Chang<br><br>Chemequal: a tool for balancing chemical equations.<br><br>Simply type the left side of the formula into the 'eq1' box, and the right side into the 'eq2' box. Then hit submit and Chemequal will calculate the values necessary to balance the equation.<br><br>Limitations:<ul><li>Cannot calculate results involving a coefficient greater than 9</li><li>Cannot parse polyatomic ions (eg. (SO_4)_2)</li><li>Cannot be fed after midnight</li></ul></p>
+    </body>
+</html>
