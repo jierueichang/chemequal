@@ -52,19 +52,16 @@ def find_balanced(iteration_count,eq1,eq2):
 
 def parse_subscripts(eq):
     res = []
-    for i in eq:
-        subscripted = re.findall('[A-Z]._\d|[A-Z]_\d',i)
-        print(subscripted)
-        for j in range(len(subscripted)):
-            element_name = subscripted[j].split('_')[0]
-            print(element_name)
-            subscript = int(subscripted[j][subscripted[j].find('_')+1])
-            subscripted[j] = [subscripted[j].replace(l,element_name*(subscript-1)) for l in re.findall('_\d',subscripted[j])][0]
-            print(subscripted[j])
-        k = re.findall('[A-Z]._\d|[A-Z]_\d',i)
-        for j in range(len(subscripted)):
-            i = i.replace(k[j],subscripted[j])
-        res.append(i)
+    for term in eq:
+        parsed_term = ''
+        elements = re.findall('([A-Z][a-z]*)([2-9]*)',term)
+        print(elements)
+        for element in elements:
+            if element[1].isnumeric():
+                parsed_term+=element[0]*int(element[1])
+            else:
+                parsed_term+=element[0]
+        res.append(parsed_term)
     return res
 
 # Render final result
