@@ -55,17 +55,25 @@ def parse_subscripts(eq):
 
 # Render final result
 
-def render(i,eq1,eq2):
+def render(i,eq1,eq2,colortags=False):
     res = ''
     for j in range(len(eq1)):
         if str(i)[j] != '1':
-            res+=str(i)[j]
+            if colortags:
+                res+='<div style="color:rgb(39, 162, 211);">'+str(i)[j]+'</div>'
+            else:
+                res+=str(i)[j]
         res+=eq1[j]
         if j!=len(eq1)-1:
             res+='+'
     res+='->'
     for j in range(len(eq2)):
         if str(i)[j+len(eq1)] != '1':
+            if colortags:
+                res+='<div style="color:rgb(39, 162, 211);">'+str(i)[j+len(eq1)]+'</div>'
+            else:
+                res+=str(i)[j]
+        else:
             res+=str(i)[j+len(eq1)]
         res+=eq2[j]
         if j!=len(eq2)-1:
@@ -91,7 +99,7 @@ def run(eq1,eq2):
             break
     else:
         return 'Cannot balance equation. Make sure your inputs are correct, then try again.'
-    return render(j,raw_eq1,raw_eq2)
+    return render(j,raw_eq1,raw_eq2,colortags=True)
 
 def main():
     # Obtain sides of equation
