@@ -85,9 +85,7 @@ def render(i,eq1,eq2,colortags=False):
             if colortags:
                 res+='<span style="color:rgb(39, 162, 211);">'+str(i)[j+len(eq1)]+'</span>'
             else:
-                res+=str(i)[j]
-        else:
-            res+=str(i)[j+len(eq1)]
+                res+=str(i)[j+len(eq1)]
         res+=eq2[j]
         if j!=len(eq2)-1:
             res+='+'
