@@ -55,12 +55,23 @@ def parse_subscripts(eq):
 
 # Render final result
 
+def subtag(term):
+    subbed_term = ''
+    elements = re.findall('([A-Z][a-z]*)([2-9]*)', term)
+    for element in elements:
+        subbed_term+=element[0]
+        if element[1].isnumeric():
+            subbed_term+='<sub>'+element[1]+'</sub>'
+    return subbed_term
+
 def render(i,eq1,eq2,colortags=False):
     res = ''
     for j in range(len(eq1)):
+        if colortags:
+            eq1[j] = subtag(eq1[j])
         if str(i)[j] != '1':
             if colortags:
-                res+='<div style="color:rgb(39, 162, 211);">'+str(i)[j]+'</div>'
+                res+='<span style="color:rgb(39, 162, 211);">'+str(i)[j]+'</span>'
             else:
                 res+=str(i)[j]
         res+=eq1[j]
@@ -68,9 +79,11 @@ def render(i,eq1,eq2,colortags=False):
             res+='+'
     res+='->'
     for j in range(len(eq2)):
+        if colortags:
+            eq2[j] = subtag(eq2[j])
         if str(i)[j+len(eq1)] != '1':
             if colortags:
-                res+='<div style="color:rgb(39, 162, 211);">'+str(i)[j+len(eq1)]+'</div>'
+                res+='<span style="color:rgb(39, 162, 211);">'+str(i)[j+len(eq1)]+'</span>'
             else:
                 res+=str(i)[j]
         else:
