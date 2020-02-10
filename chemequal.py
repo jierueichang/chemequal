@@ -16,34 +16,24 @@ def calculate_quantity(eq,multiplier=1):
 # Find if the equation is balanced
 
 def find_balanced(iteration_count,eq1,eq2):
-    '''coefficients_left = []
-    for i in eq1:
-        coefficients_left.append(i[0])
-    coefficients_right = []
-    for i in eq2:
-        coefficients_right.append(i[1])'''
     quantities_left = {}
     for i in range(len(eq1)):
         coefficient = int(str(iteration_count)[i])
-        print(coefficient)
         quantities = calculate_quantity(eq1[i],coefficient)
         for j in quantities:
             try:
                 quantities_left[j] += quantities[j]
             except:
                 quantities_left[j] = quantities[j]
-    print(quantities_left)
     quantities_right = {}
     for i in range(len(eq2)):
         coefficient = int(str(iteration_count)[i+len(eq1)])
-        print(coefficient)
         quantities = calculate_quantity(eq2[i],coefficient)
         for j in quantities:
             try:
                 quantities_right[j] += quantities[j]
             except:
                 quantities_right[j] = quantities[j]
-    print(quantities_right)
     if quantities_left == quantities_right:
         return True
     return False
@@ -55,7 +45,6 @@ def parse_subscripts(eq):
     for term in eq:
         parsed_term = ''
         elements = re.findall('([A-Z][a-z]*)([2-9]*)',term)
-        print(elements)
         for element in elements:
             if element[1].isnumeric():
                 parsed_term+=element[0]*int(element[1])
@@ -100,21 +89,14 @@ def run(eq1,eq2):
     for j in range(int('1'*(len(eq1)+len(eq2))),iteration_count):
         if find_balanced(j,eq1,eq2):
             break
-        print(j)
     else:
         return 'Cannot balance equation. Make sure your inputs are correct, then try again.'
-    print(j)
     return render(j,raw_eq1,raw_eq2)
 
 def main():
     # Obtain sides of equation
-    try:
-        eq1 = input('eq1: ')
-        eq2 = input('eq2: ')
-    # 2/3 compatibility
-    except:
-        eq1 = raw_input('eq1: ')
-        eq2 = raw_input('eq2: ')
+    eq1 = input('eq1: ')
+    eq2 = input('eq2: ')
 
     run(eq1,eq2)
 
