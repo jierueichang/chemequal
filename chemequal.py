@@ -104,6 +104,8 @@ def run(eq1,eq2):
         if find_balanced(j,eq1,eq2):
             break
         print(j)
+    else:
+        return 'Cannot balance equation. Make sure your inputs are correct, then try again.'
     print(j)
     return render(j,raw_eq1,raw_eq2)
 
